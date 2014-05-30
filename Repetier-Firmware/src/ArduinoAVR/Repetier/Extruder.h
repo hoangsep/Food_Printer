@@ -69,7 +69,14 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 #if FEATURE_DITTO_PRINTING
     static uint8_t dittoMode;
 #endif
-    uint8_t id;
+
+// Start modify, additional feature for food printer----------------------------
+#if FEATURE_MIX_PRINTING
+	static uint8_t mixMode;
+#endif
+// End modify-------------------------------------------------------------------
+
+	uint8_t id;
     int32_t xOffset;
     int32_t yOffset;
     float stepsPerMM;        ///< Steps per mm.
@@ -220,6 +227,17 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
                     WRITE(EXT1_DIR_PIN,EXT1_INVERSE);
             }
 #endif
+
+// Start modifying, mix mode for food printer
+#if FEATURE_MIX_PRINTING
+			if (Extruder::mixMode) {
+				if (dir)
+					WRITE(EXT1_DIR_PIN, !EXT1_INVERSE);
+				else
+					WRITE(EXT1_DIR_PIN, EXT1_INVERSE);
+			}
+#endif
+// End modifying, mix mode for food printer
             break;
 #endif
 #if defined(EXT1_DIR_PIN) && NUM_EXTRUDER>1
@@ -280,6 +298,14 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
                 digitalWrite(extruder[1].enablePin,extruder[1].enableOn);
         }
 #endif
+// Start modifying, mix mode for food printer
+#if FEATURE_MIX_PRINTING
+		if (Extruder::mixMode) {
+			if (extruder[1].enablePin > -1)
+				digitalWrite(extruder[1].enablePin, extruder[1].enableOn);
+		}
+#endif
+// End modifying, mix mode for food printer
 #endif
     }
     static void manageTemperatures();

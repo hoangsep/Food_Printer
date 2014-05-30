@@ -35,6 +35,12 @@ uint8_t counter250ms=25;
 uint8_t Extruder::dittoMode = 0;
 #endif
 
+// Start modifying, mix mode for food printing
+#if FEATURE_MIX_PRINTING
+uint8_t Extruder::mixMode = 0;
+#endif
+// End modifying, mix mode for food printing
+
 #ifdef SUPPORT_MAX6675
 extern int16_t read_max6675(uint8_t ss_pin);
 #endif
@@ -413,6 +419,16 @@ void Extruder::setTemperatureForExtruder(float temperatureInCelsius,uint8_t extr
         if(temperatureInCelsius>=EXTRUDER_FAN_COOL_TEMP) extruder[1].coolerPWM = extruder[1].coolerSpeed;
     }
 #endif // FEATURE_DITTO_PRINTING
+// Start modifying, mix mode for food printer
+#if FEATURE_MIX_PRINTING
+	if (Extruder::mixMode && extr == 0)
+	{
+		TemperatureController *tc2 = tempController[1];
+		tc2->setTargetTemperature(temperatureInCelsius);
+		if (temperatureIncelsius >= EXTRUDER_FAN_COOL_TEMP) extruder[1].coolerPWM = extruder[1].coolerSpeed;
+	}
+#endif // FEATURE_MIX_PRINTING
+// End modifying, mix mode for food printer
     bool alloff = true;
     for(uint8_t i=0; i<NUM_EXTRUDER; i++)
         if(tempController[i]->targetTemperatureC>15) alloff = false;
@@ -457,6 +473,14 @@ void Extruder::disableCurrentExtruderMotor()
             digitalWrite(extruder[1].enablePin,!extruder[1].enableOn);
     }
 #endif
+// Start modifying, mix mode for food printer
+#if FEATURE_MIX_PRINTING
+	if (Extruder::mixMode) {
+		if (extruder[1].enablePin > -1)
+			digitalWrite(extruder[1].enablePin, !extruder[1].enableOn);
+	}
+#endif
+// End modifying, mix mode for food printer
 }
 void Extruder::disableAllExtruderMotors() {
     for(byte i=0;i<NUM_EXTRUDER;i++) {
