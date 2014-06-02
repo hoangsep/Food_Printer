@@ -135,6 +135,14 @@
 #define GENERIC_THERM_NUM_ENTRIES 33
 #define HEATER_PWM_SPEED 0
 
+// Start modifying, mix mode for food printer
+// mixing ratio between extruders in percent
+#define EXTRUDER_RATIO1      50
+#define EXTRUDER_RATIO2      50
+// disable extruder 3, test with 2 extruders for now
+#define EXTRUDER_RATIO3      0
+// End modifying, mix mode for food printer
+
 // ############# Heated bed configuration ########################
 
 #define HAVE_HEATED_BED 0
@@ -274,6 +282,7 @@
 #define Z2_DIR_PIN    ORIG_E1_DIR_PIN
 #define Z2_ENABLE_PIN E1_ENABLE_PIN
 #define FEATURE_DITTO_PRINTING 0
+#define FEATURE_MIX_PRINTING 1
 
 
 // ################# Misc. settings ##################

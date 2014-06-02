@@ -60,6 +60,12 @@ public:
     static float invAxisStepsPerMM[];
     static float maxFeedrate[];
     static float homingFeedrate[];
+	// Start modifying, mix mode for food printer
+	// The mixing ratio for extruders in percent
+	static float extruder_ratio1;
+	static float extruder_ratio2;
+	static float extruder_ratio3;
+	// End modifying, mix mode for food printer
     static float maxAccelerationMMPerSquareSecond[];
     static float maxTravelAccelerationMMPerSquareSecond[];
     static unsigned long maxPrintAccelerationStepsPerSquareSecond[];

@@ -373,6 +373,15 @@ extern void linear_move(long steps_remaining[]);
 #error Ditto printing requires exactly 2 extruder.
 #endif
 
+// Start modifying, mix mode for food printer
+// 2 or 3 extruders are required
+#ifndef FEATURE_MIX_PRINTING
+#define FEATURE_MIX_PRINTING false
+#endif
+#if FEATURE_MIX_PRINTING && NUM_EXTRUDER!=2 && NUM_EXTRUDER!=3
+#error mix printing requires exactly 2 extruder.
+#endif
+// End modifying, mix mode for food printer
 
 extern millis_t previousMillisCmd;
 extern millis_t maxInactiveTime;

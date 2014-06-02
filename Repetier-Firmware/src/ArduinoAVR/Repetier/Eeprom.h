@@ -107,6 +107,13 @@ have problems with other modules using the eeprom */
 #define EPR_DELTA_DIAGONAL_CORR_B 937
 #define EPR_DELTA_DIAGONAL_CORR_C 941
 
+// Start modifying, mix mode for food printer
+// Store mixing ratio between extruders in percent
+#define EPR_EXTRUDER_RATIO1              945
+#define EPR_EXTRUDER_RATIO2              949
+#define EPR_EXTRUDER_RATIO3              953
+// End modifying, mix mode for food printer
+
 #define EEPROM_EXTRUDER_OFFSET 200
 // bytes per extruder needed, leave some space for future development
 #define EEPROM_EXTRUDER_LENGTH 100
