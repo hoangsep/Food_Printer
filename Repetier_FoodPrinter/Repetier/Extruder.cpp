@@ -37,14 +37,14 @@ uint8_t Extruder::dittoMode = 0;
 
 // Start modifying, mix mode for food printing
 #if FEATURE_MIX_PRINTING
-uint8_t Extruder::mixMode = 0;
-uint8_t Extruder::ext1_steps = 0;
-uint8_t Extruder::ext2_steps = 0;
-uint8_t Extruder::ext3_steps = 0;
-uint8_t Extruder::current_total_steps = 0;
-int8_t Extruder::diff1 = 0;
-int8_t Extruder::diff2 = 0;
-int8_t Extruder::diff3 = 0;
+uint8_t Extruder::mixMode = 1;
+uint16_t Extruder::ext1_steps = 0;
+uint16_t Extruder::ext2_steps = 0;
+uint16_t Extruder::ext3_steps = 0;
+uint16_t Extruder::current_total_steps = 0;
+int16_t Extruder::diff1 = 0;
+int16_t Extruder::diff2 = 0;
+int16_t Extruder::diff3 = 0;
 #endif
 // End modifying, mix mode for food printing
 

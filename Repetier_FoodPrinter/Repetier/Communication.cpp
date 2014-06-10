@@ -168,6 +168,11 @@ FSTRINGVALUE(Com::tExtruderSpace,"extruder ")
 FSTRINGVALUE(Com::tTempSensorDefect,": temp sensor defect")
 FSTRINGVALUE(Com::tTempSensorWorking,": working")
 FSTRINGVALUE(Com::tDryModeUntilRestart,"Printer set into dry run mode until restart!")
+
+// Start modifying, mix mode for food printer
+FSTRINGVALUE(Com::tCurrentExtruderSteps, " Extruder ")
+// End modifying, mix mode for food printer
+
 #ifdef DEBUG_QUEUE_MOVE
 FSTRINGVALUE(Com::tDBGId,"ID:")
 FSTRINGVALUE(Com::tDBGVStartEnd,"vStart/End:")

@@ -159,9 +159,9 @@
 #define HEATED_BED_PID_IGAIN   33
 #define HEATED_BED_PID_DGAIN 290
 #define HEATED_BED_PID_MAX 255
-#define MIN_EXTRUDER_TEMP 150
+#define MIN_EXTRUDER_TEMP -100
 #define MAXTEMP 275
-#define MIN_DEFECT_TEMPERATURE -10
+#define MIN_DEFECT_TEMPERATURE -100
 #define MAX_DEFECT_TEMPERATURE 290
 
 // ################ Endstop configuration #####################

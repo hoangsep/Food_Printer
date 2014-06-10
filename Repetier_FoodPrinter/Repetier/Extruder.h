@@ -73,13 +73,13 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 // Start modify, additional feature for food printer----------------------------
 #if FEATURE_MIX_PRINTING
 	static uint8_t mixMode;
-	static uint8_t ext1_steps;
-	static uint8_t ext2_steps;
-	static uint8_t ext3_steps;
-	static uint8_t current_total_steps;
-	static int8_t diff1;
-	static int8_t diff2;
-	static int8_t diff3;
+	static uint16_t ext1_steps;
+	static uint16_t ext2_steps;
+	static uint16_t ext3_steps;
+	static uint16_t current_total_steps;
+	static int16_t diff1;
+	static int16_t diff2;
+	static int16_t diff3;
 #endif
 // End modify-------------------------------------------------------------------
 
@@ -125,7 +125,11 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
         {
         case 0:
 #if NUM_EXTRUDER>0
+// Start modifying, mix mode for food printer
+#if !FEATURE_MIX_PRINTING
             WRITE(EXT0_STEP_PIN,HIGH);
+#endif
+// End modifying, mix mode for food printer
 #if FEATURE_DITTO_PRINTING
             if(Extruder::dittoMode) {
                 WRITE(EXT1_STEP_PIN,HIGH);
@@ -141,9 +145,9 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 					diff3 = -EXTRUDER_RATIO3;
 				}
 				else {
-					diff1 = ext1_steps / current_total_steps * 100 - EXTRUDER_RATIO1;
-					diff2 = ext2_steps / current_total_steps * 100 - EXTRUDER_RATIO2;
-					diff3 = ext3_steps / current_total_steps * 100 - EXTRUDER_RATIO3;
+					diff1 = ((ext1_steps * 100) / current_total_steps) - EXTRUDER_RATIO1;
+					diff2 = ((ext2_steps * 100) / current_total_steps) - EXTRUDER_RATIO2;
+					diff3 = ((ext3_steps * 100) / current_total_steps) - EXTRUDER_RATIO3;
 				}
 				if (diff1 <= diff2) {
 					if (diff1 <= diff3) { // diff1 < diff2 and diff1 < diff3
@@ -234,11 +238,12 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 #endif
 // Start modifying, mix mode for food printer
 #if FEATURE_MIX_PRINTING
-			WRITE(EXT0_STEP_PIN, LOW);
-			WRITE(EXT1_STEP_PIN, LOW);
+			if (Extruder::mixMode) {
+				WRITE(EXT1_STEP_PIN, LOW);
 #if defined(EXT2_STEP_PIN) && NUM_EXTRUDER>2
-			WRITE(EXT2_STEP_PIN, LOW);
+				WRITE(EXT2_STEP_PIN, LOW);
 #endif
+			}
 #endif
 // End modifying, mix mode for food printer
 #endif

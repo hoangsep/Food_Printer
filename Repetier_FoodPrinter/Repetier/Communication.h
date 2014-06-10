@@ -168,6 +168,11 @@ FSTRINGVAR(tExtruderSpace)
 FSTRINGVAR(tTempSensorDefect)
 FSTRINGVAR(tTempSensorWorking)
 FSTRINGVAR(tDryModeUntilRestart)
+
+// Start modifying, mix mode for food printer
+FSTRINGVAR(tCurrentExtruderSteps)
+// End modifying, mix mode for food printer
+
 #ifdef DEBUG_QUEUE_MOVE
 FSTRINGVAR(tDBGId)
 FSTRINGVAR(tDBGVStartEnd)
