@@ -63,9 +63,9 @@ public:
 
 	// Start modifying, mix mode for food printer
 	// The mixing ratio for extruders in percent
-	static float extruder_ratio1;
-	static float extruder_ratio2;
-	static float extruder_ratio3;
+	static float extruderRatio1;
+	static float extruderRatio2;
+	static float extruderRatio3;
 	// End modifying, mix mode for food printer
 
     static float maxAccelerationMMPerSquareSecond[];

@@ -137,8 +137,8 @@
 
 // Start modifying, mix mode for food printer
 // mixing ratio between extruders in percent
-#define EXTRUDER_RATIO1      50
-#define EXTRUDER_RATIO2      50
+#define EXTRUDER_RATIO1      30
+#define EXTRUDER_RATIO2      70
 // disable extruder 3, test with 2 extruders for now
 #define EXTRUDER_RATIO3      0
 // End modifying, mix mode for food printer
@@ -295,7 +295,7 @@
 #define ACK_WITH_LINENUMBER
 #define WAITING_IDENTIFIER "wait"
 #define ECHO_ON_EXECUTE
-#define EEPROM_MODE 1
+#define EEPROM_MODE 2
 
 /* ======== Servos =======
 Control the servos with

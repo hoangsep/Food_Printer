@@ -33,9 +33,9 @@ float Printer::homingFeedrate[3] = {HOMING_FEEDRATE_X, HOMING_FEEDRATE_Y, HOMING
 
 // Start modifying, mix mode for food printer
 // The mixing ratio for extruders in percent
-float Printer::extruder_ratio1;
-float Printer::extruder_ratio2;
-float Printer::extruder_ratio3;
+float Printer::extruderRatio1;
+float Printer::extruderRatio2;
+float Printer::extruderRatio3;
 // End modifying, mix mode for food printer
 
 #ifdef RAMP_ACCELERATION

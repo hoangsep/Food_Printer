@@ -388,6 +388,31 @@ public:
         return DELTA_DIAGONAL_CORRECTION_C;
 #endif
     }
+
+	// Start modifying, mix mode for food printer
+	static inline float extruderRatio1() {
+#if EEPROM_MODE!=0
+		return HAL::eprGetFloat(EPR_EXTRUDER_RATIO1);
+#else 
+		return EXTRUDER_RATIO1;
+#endif
+	}
+	static inline float extruderRatio2() {
+#if EEPROM_MODE!=0
+		return HAL::eprGetFloat(EPR_EXTRUDER_RATIO2);
+#else 
+		return EXTRUDER_RATIO2;
+#endif
+	}
+	static inline float extruderRatio3() {
+#if EEPROM_MODE!=0
+		return HAL::eprGetFloat(EPR_EXTRUDER_RATIO3);
+#else 
+		return EXTRUDER_RATIO3;
+#endif
+	}
+	// End modifying, mix mode for food printer
+
     static inline float deltaMaxRadius() {
 #if EEPROM_MODE!=0
         return HAL::eprGetFloat(EPR_DELTA_MAX_RADIUS);

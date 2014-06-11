@@ -7,6 +7,13 @@
 //extern uint8_t current_extruder_out;
 //#endif
 
+// Start modifying, mix mode for food printer
+#if EEPROM_MODE!=0
+#include "Eeprom.h"
+#include "Printer.h"
+#endif
+// End modifying, mix mode for food printer
+
 // Updates the temperature of all extruders and heated bed if it's time.
 // Toggels the heater power if necessary.
 extern bool reportTempsensorError(); ///< Report defect sensors
@@ -140,14 +147,14 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 			if (Extruder::mixMode) {
 				current_total_steps = ext1_steps + ext2_steps + ext3_steps;
 				if (current_total_steps == 0) {
-					diff1 = -EXTRUDER_RATIO1;
-					diff2 = -EXTRUDER_RATIO2;
-					diff3 = -EXTRUDER_RATIO3;
+					diff1 = -Printer::extruderRatio1;
+					diff2 = -Printer::extruderRatio2;
+					diff3 = -Printer::extruderRatio3;
 				}
 				else {
-					diff1 = ((ext1_steps * 100) / current_total_steps) - EXTRUDER_RATIO1;
-					diff2 = ((ext2_steps * 100) / current_total_steps) - EXTRUDER_RATIO2;
-					diff3 = ((ext3_steps * 100) / current_total_steps) - EXTRUDER_RATIO3;
+					diff1 = ((ext1_steps * 100) / current_total_steps) - Printer::extruderRatio1;
+					diff2 = ((ext2_steps * 100) / current_total_steps) - Printer::extruderRatio2;
+					diff3 = ((ext3_steps * 100) / current_total_steps) - Printer::extruderRatio3;
 				}
 				if (diff1 <= diff2) {
 					if (diff1 <= diff3) { // diff1 < diff2 and diff1 < diff3

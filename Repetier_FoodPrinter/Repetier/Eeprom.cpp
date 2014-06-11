@@ -70,12 +70,14 @@ void EEPROM::restoreEEPROMSettingsFromConfiguration()
     Printer::homingFeedrate[Y_AXIS] = HOMING_FEEDRATE_Y;
     Printer::homingFeedrate[Z_AXIS] = HOMING_FEEDRATE_Z;
     Printer::maxJerk = MAX_JERK;
+
 	// Start modifying, mix mode for food printer
 	// mixing ratio for extruders in percent
-	Printer::extruder_ratio1 = EXTRUDER_RATIO1;
-	Printer::extruder_ratio2 = EXTRUDER_RATIO2;
-	Printer::extruder_ratio3 = EXTRUDER_RATIO3;
+	Printer::extruderRatio1 = EXTRUDER_RATIO1;
+	Printer::extruderRatio2 = EXTRUDER_RATIO2;
+	Printer::extruderRatio3 = EXTRUDER_RATIO3;
 	// End modifying, mix mode for food printer
+
 #if DRIVE_SYSTEM!=3
     Printer::maxZJerk = MAX_ZJERK;
 #endif
@@ -322,11 +324,13 @@ void EEPROM::storeDataIntoEEPROM(uint8_t corrupted)
     HAL::eprSetFloat(EPR_Y_HOMING_FEEDRATE,Printer::homingFeedrate[1]);
     HAL::eprSetFloat(EPR_Z_HOMING_FEEDRATE,Printer::homingFeedrate[2]);
     HAL::eprSetFloat(EPR_MAX_JERK,Printer::maxJerk);
+
 	// Start modifying, mix mode for food printer
-	HAL::eprSetFloat(EPR_EXTRUDER_RATIO1, Printer::extruder_ratio1);
-	HAL::eprSetFloat(EPR_EXTRUDER_RATIO2, Printer::extruder_ratio2);
-	HAL::eprSetFloat(EPR_EXTRUDER_RATIO3, Printer::extruder_ratio3);
+	HAL::eprSetFloat(EPR_EXTRUDER_RATIO1, Printer::extruderRatio1);
+	HAL::eprSetFloat(EPR_EXTRUDER_RATIO2, Printer::extruderRatio2);
+	HAL::eprSetFloat(EPR_EXTRUDER_RATIO3, Printer::extruderRatio3);
 	// End modifying, mix mode for food printer
+
 #if DRIVE_SYSTEM!=3
     HAL::eprSetFloat(EPR_MAX_ZJERK,Printer::maxZJerk);
 #endif
@@ -487,11 +491,13 @@ void EEPROM::readDataFromEEPROM()
     Printer::homingFeedrate[1] = HAL::eprGetFloat(EPR_Y_HOMING_FEEDRATE);
     Printer::homingFeedrate[2] = HAL::eprGetFloat(EPR_Z_HOMING_FEEDRATE);
     Printer::maxJerk = HAL::eprGetFloat(EPR_MAX_JERK);
+
 	// Start modifying, mix mode for food printer
-	Printer::extruder_ratio1 = HAL::eprGetFloat(EPR_EXTRUDER_RATIO1);
-	Printer::extruder_ratio2 = HAL::eprGetFloat(EPR_EXTRUDER_RATIO2);
-	Printer::extruder_ratio3 = HAL::eprGetFloat(EPR_EXTRUDER_RATIO3);
+	Printer::extruderRatio1 = HAL::eprGetFloat(EPR_EXTRUDER_RATIO1);
+	Printer::extruderRatio2 = HAL::eprGetFloat(EPR_EXTRUDER_RATIO2);
+	Printer::extruderRatio3 = HAL::eprGetFloat(EPR_EXTRUDER_RATIO3);
 	// End modifying, mix mode for food printer
+
 #if DRIVE_SYSTEM!=3
     Printer::maxZJerk = HAL::eprGetFloat(EPR_MAX_ZJERK);
 #endif
@@ -716,12 +722,14 @@ void EEPROM::writeSettings()
 #endif
     writeFloat(EPR_Z_HOMING_FEEDRATE,Com::tEPRZHomingFeedrate);
     writeFloat(EPR_MAX_JERK,Com::tEPRMaxJerk);
+
 	// Start modifying, mix mode for food printer
 	// Printout 3 extruder ratio to the console
 	writeFloat(EPR_EXTRUDER_RATIO1, Com::tEPRExtruderRatio1);
 	writeFloat(EPR_EXTRUDER_RATIO2, Com::tEPRExtruderRatio2);
 	writeFloat(EPR_EXTRUDER_RATIO3, Com::tEPRExtruderRatio3);
 	// End modifying, mix mode for food printer
+
 #if DRIVE_SYSTEM!=3
     writeFloat(EPR_MAX_ZJERK,Com::tEPRMaxZJerk);
 #endif
