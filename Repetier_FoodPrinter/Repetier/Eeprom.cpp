@@ -723,13 +723,6 @@ void EEPROM::writeSettings()
     writeFloat(EPR_Z_HOMING_FEEDRATE,Com::tEPRZHomingFeedrate);
     writeFloat(EPR_MAX_JERK,Com::tEPRMaxJerk);
 
-	// Start modifying, mix mode for food printer
-	// Printout 3 extruder ratio to the console
-	writeFloat(EPR_EXTRUDER_RATIO1, Com::tEPRExtruderRatio1);
-	writeFloat(EPR_EXTRUDER_RATIO2, Com::tEPRExtruderRatio2);
-	writeFloat(EPR_EXTRUDER_RATIO3, Com::tEPRExtruderRatio3);
-	// End modifying, mix mode for food printer
-
 #if DRIVE_SYSTEM!=3
     writeFloat(EPR_MAX_ZJERK,Com::tEPRMaxZJerk);
 #endif
@@ -842,6 +835,14 @@ void EEPROM::writeSettings()
         writeFloat(o+EPR_EXTRUDER_ADVANCE_L,Com::tEPRAdvanceL);
 #endif
     }
+
+	// Start modifying, mix mode for food printer
+	// Printout 3 extruder ratio to the console
+	writeFloat(EPR_EXTRUDER_RATIO1, Com::tEPRExtruderRatio1);
+	writeFloat(EPR_EXTRUDER_RATIO2, Com::tEPRExtruderRatio2);
+	writeFloat(EPR_EXTRUDER_RATIO3, Com::tEPRExtruderRatio3);
+	// End modifying, mix mode for food printer
+	
 #else
     Com::printErrorF(Com::tNoEEPROMSupport);
 #endif

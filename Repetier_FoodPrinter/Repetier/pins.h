@@ -344,6 +344,13 @@ STEPPER_CURRENT_CONTROL
 #define ORIG_E1_DIR_PIN          34
 #define ORIG_E1_ENABLE_PIN       30
 
+// Start modifying, mix mode for food printer
+// Extruder 3 (E2) extrension
+#define ORIG_E2_STEP_PIN         40
+#define ORIG_E2_DIR_PIN          42
+#define ORIG_E2_ENABLE_PIN       65
+// End modifying, mix mode for food printer
+
 #define SDPOWER            -1
 #define SDSS               53
 #define SDCARDDETECT 	    49
@@ -358,6 +365,11 @@ STEPPER_CURRENT_CONTROL
 #define TEMP_0_PIN         13   // ANALOG NUMBERING
 #define TEMP_1_PIN         14   // ANALOG NUMBERING
 #define TEMP_2_PIN         15
+// Start modifying, mix mode for food printer
+// Heater and temperature pin for extruder 3
+#define HEATER_3_PIN       44
+#define TEMP_3_PIN         10   // ANALOG NUMBERING
+// End modifying, mix mode for food printer
 #define E0_PINS ORIG_E0_STEP_PIN,ORIG_E0_DIR_PIN,ORIG_E0_ENABLE_PIN,
 #define E1_PINS ORIG_E1_STEP_PIN,ORIG_E1_DIR_PIN,ORIG_E1_ENABLE_PIN,
 

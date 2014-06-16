@@ -36,7 +36,7 @@
 
 */
 
-#define NUM_EXTRUDER 2
+#define NUM_EXTRUDER 3
 #define MOTHERBOARD 33
 
 #include "pins.h"
@@ -57,6 +57,7 @@
 #define YAXIS_STEPS_PER_MM 80
 #define ZAXIS_STEPS_PER_MM 80
 #define EXTRUDER_FAN_COOL_TEMP 50
+// Extruder 0
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_STEPS_PER_MM 370
@@ -88,6 +89,7 @@
 #define EXT0_DESELECT_COMMANDS ""
 #define EXT0_EXTRUDER_COOLER_PIN -1
 #define EXT0_EXTRUDER_COOLER_SPEED 255
+// Extruder 1
 #define EXT1_X_OFFSET 0
 #define EXT1_Y_OFFSET 0
 #define EXT1_STEPS_PER_MM 370
@@ -119,6 +121,39 @@
 #define EXT1_DESELECT_COMMANDS ""
 #define EXT1_EXTRUDER_COOLER_PIN -1
 #define EXT1_EXTRUDER_COOLER_SPEED 255
+// Extruder 2
+#define EXT2_X_OFFSET 0
+#define EXT2_Y_OFFSET 0
+#define EXT2_STEPS_PER_MM 370
+#define EXT2_TEMPSENSOR_TYPE 1
+#define EXT2_TEMPSENSOR_PIN TEMP_3_PIN
+#define EXT2_HEATER_PIN HEATER_3_PIN
+#define EXT2_STEP_PIN ORIG_E2_STEP_PIN
+#define EXT2_DIR_PIN ORIG_E2_DIR_PIN
+#define EXT2_INVERSE 0
+#define EXT2_ENABLE_PIN E2_ENABLE_PIN
+#define EXT2_ENABLE_ON 0
+#define EXT2_MAX_FEEDRATE 50
+#define EXT2_MAX_START_FEEDRATE 20
+#define EXT2_MAX_ACCELERATION 5000
+#define EXT2_HEAT_MANAGER 3
+#define EXT2_WATCHPERIOD 1
+#define EXT2_PID_INTEGRAL_DRIVE_MAX 230
+#define EXT2_PID_INTEGRAL_DRIVE_MIN 40
+#define EXT2_PID_P 7
+#define EXT2_PID_I 2
+#define EXT2_PID_D 40
+#define EXT2_PID_MAX 255
+#define EXT2_ADVANCE_K 0
+#define EXT2_ADVANCE_L 0
+#define EXT2_ADVANCE_BACKLASH_STEPS 0
+#define EXT2_WAIT_RETRACT_TEMP 150
+#define EXT2_WAIT_RETRACT_UNITS 0
+#define EXT2_SELECT_COMMANDS ""
+#define EXT2_DESELECT_COMMANDS ""
+#define EXT2_EXTRUDER_COOLER_PIN -1
+#define EXT2_EXTRUDER_COOLER_SPEED 255
+// Common extruder settings
 #define RETRACT_DURING_HEATUP true
 #define PID_CONTROL_RANGE 20
 #define SKIP_M109_IF_WITHIN 2
@@ -139,7 +174,6 @@
 // mixing ratio between extruders in percent
 #define EXTRUDER_RATIO1      30
 #define EXTRUDER_RATIO2      70
-// disable extruder 3, test with 2 extruders for now
 #define EXTRUDER_RATIO3      0
 // End modifying, mix mode for food printer
 
@@ -282,8 +316,9 @@
 #define Z2_DIR_PIN    ORIG_E1_DIR_PIN
 #define Z2_ENABLE_PIN E1_ENABLE_PIN
 #define FEATURE_DITTO_PRINTING 0
+// Start modifying, mix mode for food printer
 #define FEATURE_MIX_PRINTING 1
-
+// End modifying, mix mode for food printer
 
 // ################# Misc. settings ##################
 
@@ -295,7 +330,7 @@
 #define ACK_WITH_LINENUMBER
 #define WAITING_IDENTIFIER "wait"
 #define ECHO_ON_EXECUTE
-#define EEPROM_MODE 2
+#define EEPROM_MODE 1
 
 /* ======== Servos =======
 Control the servos with
