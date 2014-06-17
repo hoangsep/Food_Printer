@@ -312,10 +312,18 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 // Start modifying, mix mode for food printer
 #if FEATURE_MIX_PRINTING
 			if (Extruder::mixMode) {
-				if (dir)
+				if (dir) {
 					WRITE(EXT1_DIR_PIN, !EXT1_INVERSE);
-				else
+#if defined(EXT2_DIR_PIN) && NUM_EXTRUDER>2
+					WRITE(EXT2_DIR_PIN, !EXT2_INVERSE);
+#endif
+				}
+				else {
 					WRITE(EXT1_DIR_PIN, EXT1_INVERSE);
+#if defined(EXT2_DIR_PIN) && NUM_EXTRUDER>2
+					WRITE(EXT2_DIR_PIN, EXT2_INVERSE);
+#endif
+				}
 			}
 #endif
 // End modifying, mix mode for food printer
@@ -384,6 +392,8 @@ class Extruder   // Size: 12*1 Byte+12*4 Byte+4*2Byte = 68 Byte
 		if (Extruder::mixMode) {
 			if (extruder[1].enablePin > -1)
 				digitalWrite(extruder[1].enablePin, extruder[1].enableOn);
+			if (extruder[2].enablePin > -1)
+				digitalWrite(extruder[2].enablePin, extruder[2].enableOn);
 		}
 #endif
 // End modifying, mix mode for food printer

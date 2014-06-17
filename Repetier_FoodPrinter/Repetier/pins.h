@@ -372,6 +372,8 @@ STEPPER_CURRENT_CONTROL
 // End modifying, mix mode for food printer
 #define E0_PINS ORIG_E0_STEP_PIN,ORIG_E0_DIR_PIN,ORIG_E0_ENABLE_PIN,
 #define E1_PINS ORIG_E1_STEP_PIN,ORIG_E1_DIR_PIN,ORIG_E1_ENABLE_PIN,
+// Add E2_PINS - extension module
+#define E2_PINS ORIG_E2_STEP_PIN,ORIG_E2_DIR_PIN,ORIG_E2_ENABLE_PIN,
 
 
 #else // RAMPS_V_1_1 or RAMPS_V_1_2 as default
