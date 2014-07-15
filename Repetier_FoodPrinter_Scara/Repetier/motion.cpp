@@ -985,6 +985,55 @@ uint8_t transformCartesianStepsToDeltaSteps(long cartesianPosSteps[], long tugaP
 }
 #endif
 
+// Start modifying, SCARA printer
+#if DRIVE_SYSTEM==6
+/**
+  Calculate the SCARA arm position from a cartesian position
+  @param cartesianPosSteps Array containing cartesian coordinates.
+  @param scaraPosSteps Result array with arm angle in degree from the x axis.
+  @returns 1 if cartesian coordinates have a valid SCARA arm position 0 if not.
+*/
+uint8_t transformCartesianStepsToDeltaSteps(long cartesianPosSteps[], long scaraPosSteps[]) {
+	long local_x = cartesianPosSteps[X_AXIS] - SCARA_OFFSET_X;
+	long local_y = cartesianPosSteps[Y_AXIS] - SCARA_OFFSET_Y;
+	scaraPosSteps[Z_AXIS] = cartesianPosSteps[Z_AXIS];
+
+/*
+	double cosElbowAngle = (local_x * local_x +local_y * local_y - 2 * SCARA_LINK * SCARA_LINK)
+							/ (2 * SCARA_LINK * SCARA_LINK);
+    double sinElbowAngle = sqrt(1 - cosElbowAngle * cosElbowAngle);
+
+*/    
+    uint16_t sqrtXY = 0;
+#ifdef FAST_INTEGER_SQRT
+    sqrtXY = HAL::integerSqrt(local_x * local_x + local_y * local_y);
+#else
+    sqrtXY = sqrt(local_x * local_x + local_y * local_y);
+#endif
+
+    // Q is half of the angle between 2 arms
+    double cosQ = 0;
+    if(sqrtXY != 0)
+    	cosQ = (local_x * local_x + local_y * local_y) / (2 * SCARA_LINK * sqrtXY);
+    double Q = acos(cosQ);
+    double shoulderAngle = 0;
+    if(local_x == 0)
+    	shoulderAngle = (-Q) * 180 / 3.1415926;
+    else
+    	shoulderAngle = (atan2(local_y,local_x) - Q) * 180 / 3.1415926;
+
+    // Assign the value
+    scaraPosSteps[0] = shoulderAngle;
+    scaraPosSteps[1] = shoulderAngle + 2 * Q;
+
+/*	
+    if(scaraPosSteps[0] < -90 || scaraPosSteps[0] > 90 || scaraPosSteps[1] < -90 || scaraPosSteps[1] > 90)
+    	return 0;
+*/
+    return 1;
+}
+#endif
+// End modifying, SCARA printer
 
 #if NONLINEAR_SYSTEM
 

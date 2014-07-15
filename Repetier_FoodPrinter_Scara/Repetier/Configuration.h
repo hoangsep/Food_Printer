@@ -51,8 +51,21 @@
 // If it is incompatible you will get compiler errors about write functions not beeing compatible!
 //#define COMPAT_PRE1
 
+/* Define the type of axis movements needed for your printer. The typical case
+is a full cartesian system where x, y and z moves are handled by separate motors.
 
-#define DRIVE_SYSTEM 0
+0 = full cartesian system, xyz have seperate motors.
+1 = z axis + xy H-gantry (x_motor = x+y, y_motor = x-y)
+2 = z axis + xy H-gantry (x_motor = x+y, y_motor = y-x)
+3 = Delta printers (Rostock, Kossel, RostockMax, Cerberus, etc)
+4 = Tuga printer (Scott-Russell mechanism)
+5 = Bipod system (not implemented)
+6 = SCARA system (being implemented by WannaFly)
+Cases 1 and 2 cover all needed xy H gantry systems. If you get results mirrored etc. you can swap motor connections for x and y.
+If a motor turns in the wrong direction change INVERT_X_DIR or INVERT_Y_DIR.
+*/
+
+#define DRIVE_SYSTEM 6
 #define XAXIS_STEPS_PER_MM 100
 #define YAXIS_STEPS_PER_MM 100
 #define ZAXIS_STEPS_PER_MM 407
@@ -316,9 +329,17 @@
 #define Z2_DIR_PIN    ORIG_E1_DIR_PIN
 #define Z2_ENABLE_PIN E1_ENABLE_PIN
 #define FEATURE_DITTO_PRINTING 0
+
 // Start modifying, mix mode for food printer
 #define FEATURE_MIX_PRINTING 1
 // End modifying, mix mode for food printer
+
+// Start modifying, SCARA printer
+#define SCARA_LINK 140
+#define SCARA_STEPS_PER_DEG 80/9
+#define SCARA_OFFSET_X 0
+#define SCARA_OFFSET_Y 0
+// End modifying, SCARA printer
 
 // ################# Misc. settings ##################
 

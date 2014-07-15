@@ -143,6 +143,15 @@ FSTRINGVAR(tInvalidDeltaCoordinate)
 FSTRINGVAR(tDBGDeltaNoMoveinDSegment)
 FSTRINGVAR(tEPRDiagonalRodLength)
 #endif
+
+// Start modifying, SCARA printer
+#if DRIVE_SYSTEM==6
+FSTRINGVAR(tInvalidDeltaCoordinate)
+FSTRINGVAR(tDBGDeltaNoMoveinDSegment)
+FSTRINGVAR(tEPRDiagonalRodLength)
+#endif
+// End modifying, SCARA printer
+
 #ifdef DEBUG_GENERIC
 FSTRINGVAR(tGenTemp)
 #endif // DEBUG_GENERICFSTRINGVALUE(Com::,"")
