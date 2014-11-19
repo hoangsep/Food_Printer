@@ -91,13 +91,25 @@
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="QSpinBox" name="endingRatio2"/>
+           <widget class="QSpinBox" name="endingRatio2">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item row="0" column="5">
-           <widget class="QSpinBox" name="startingRatio3"/>
+           <widget class="QSpinBox" name="startingRatio3">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSpinBox" name="endingRatio1"/>
+           <widget class="QSpinBox" name="endingRatio1">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="endingRatio1Label">
@@ -114,10 +126,18 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QSpinBox" name="startingRatio1"/>
+           <widget class="QSpinBox" name="startingRatio1">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item row="1" column="5">
-           <widget class="QSpinBox" name="endingRatio3"/>
+           <widget class="QSpinBox" name="endingRatio3">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item row="0" column="2">
            <widget class="QLabel" name="startingRatio2Label">
@@ -127,7 +147,11 @@
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QSpinBox" name="startingRatio2"/>
+           <widget class="QSpinBox" name="startingRatio2">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item row="0" column="4">
            <widget class="QLabel" name="startingratio3Label">
@@ -183,7 +207,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="mixedGCodeCcomboBox">
+           <widget class="QComboBox" name="mixedGCodeComboBox">
             <property name="minimumSize">
              <size>
               <width>700</width>

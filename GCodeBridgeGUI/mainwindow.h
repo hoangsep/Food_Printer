@@ -47,11 +47,11 @@ private slots:
 
     void on_endingRatio2_valueChanged(int arg1);
 
-    void on_endingRatio3_valueChanged(int arg1);
+    void on_endingRatio3_valueChanged(int arg1);  
 
-    void calibrateRatios();
+    void on_origGCodeComboBox_activated(const QString &arg1);
 
-    void on_origGCodeComboBox_currentIndexChanged(int index);
+    void on_mixedGCodeComboBox_activated(const QString &arg1);
 
 private:
     // Private variables
@@ -68,8 +68,11 @@ private:
     QVector<int> ending_ratios{3,0};
 
     // Private functions
+    qint8 calibrateRatios();
     qint8 changeRatio();
     void updateCurrentFileName(QString targetFileName);
+    void updateOrigBox(QString newLocation);
+    void updateMixedBox(QString newLocation);
 };
 
 #endif // MAINWINDOW_H

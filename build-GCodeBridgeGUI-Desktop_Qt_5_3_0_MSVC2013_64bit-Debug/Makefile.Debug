@@ -79,26 +79,6 @@ DESTDIR_TARGET = debug\GCodeBridgeGUI.exe
 	$<
 <<
 
-{.}.cpp{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
-	$<
-<<
-
-{.}.cc{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
-	$<
-<<
-
-{.}.cxx{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
-	$<
-<<
-
-{.}.c{debug\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
-	$<
-<<
-
 {debug}.cpp{debug\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
@@ -115,6 +95,26 @@ DESTDIR_TARGET = debug\GCodeBridgeGUI.exe
 <<
 
 {debug}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{.}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{.}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{.}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{.}.c{debug\}.obj::
 	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
 	$<
 <<
@@ -277,6 +277,10 @@ debug\moc_mainwindow.cpp: C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\QMainW
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QDir \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\qdir.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\qfileinfo.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\QMessageBox \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qdialog.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QVector \
 		..\GCodeBridgeGUI\mainwindow.h
 	C:\Qt\Qt5.3.0\5.3\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/Qt5.3.0/5.3/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/Honda.S/Dropbox/Food_printer/Code/Food_Printer/GCodeBridgeGUI -IC:/Qt/Qt5.3.0/5.3/msvc2013_64/include -IC:/Qt/Qt5.3.0/5.3/msvc2013_64/include/QtWidgets -IC:/Qt/Qt5.3.0/5.3/msvc2013_64/include/QtGui -IC:/Qt/Qt5.3.0/5.3/msvc2013_64/include/QtANGLE -IC:/Qt/Qt5.3.0/5.3/msvc2013_64/include/QtCore -I. ..\GCodeBridgeGUI\mainwindow.h -o debug\moc_mainwindow.cpp
 
@@ -407,6 +411,10 @@ debug\main.obj: ..\GCodeBridgeGUI\main.cpp ..\GCodeBridgeGUI\mainwindow.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QDir \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\qdir.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\qfileinfo.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\QMessageBox \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qdialog.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QVector \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\QApplication \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qapplication.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\qcoreapplication.h \
@@ -519,12 +527,18 @@ debug\mainwindow.obj: ..\GCodeBridgeGUI\mainwindow.cpp C:\Qt\Qt5.3.0\5.3\msvc201
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\qcontiguouscache.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtGui\qvector2d.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QFile \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\QMessageBox \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QTextStream \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QDebug \
 		..\GCodeBridgeGUI\mainwindow.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qmainwindow.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtWidgets\qtabwidget.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtGui\qicon.h \
 		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QDir \
+		C:\Qt\Qt5.3.0\5.3\msvc2013_64\include\QtCore\QVector \
 		ui_mainwindow.h
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 

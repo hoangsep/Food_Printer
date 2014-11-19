@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Add the action to the menu
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(openAct);
+
+    ui->origGCodeComboBox->setDuplicatesEnabled(false);
+    ui->mixedGCodeComboBox->setDuplicatesEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -40,10 +43,11 @@ void MainWindow::openFile()
 
 void MainWindow::updateCurrentFileName(QString targetFileName)
 {
+    QString currentString = ui->textEdit->toPlainText();
     // Check if any changes is made in the current file
     // The file is new
     if (currentFileName.isEmpty()) {
-        if (!(ui->textEdit->toPlainText()).isEmpty()){
+        if (!currentString.isEmpty()){
             int confirm = QMessageBox::question(this, tr("Quit Action"),
                                                 tr("This is a new file, do you want to save it?"),
                                                 QMessageBox::Yes | QMessageBox::No);
@@ -61,7 +65,6 @@ void MainWindow::updateCurrentFileName(QString targetFileName)
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
             QString fileString = in.readAll();
-            QString currentString = ui->textEdit->toPlainText();
             if (QString::compare(fileString, currentString) != 0) {
                 int confirm = QMessageBox::question(this, tr("Quit Action"),
                                                     tr("The current working file is changed, do you want to save it?"),
@@ -86,6 +89,20 @@ void MainWindow::updateCurrentFileName(QString targetFileName)
     // Change the fileName, effectively change the internal open file
     currentFileName = targetFileName;
     ui->currentFileName->setText(currentFileName);
+}
+
+void MainWindow::updateOrigBox(QString newLocation)
+{
+    ui->origGCodeComboBox->addItem(newLocation);
+    int index = ui->origGCodeComboBox->findText(newLocation);
+    ui->origGCodeComboBox->setCurrentIndex(index);
+}
+
+void MainWindow::updateMixedBox(QString newLocation)
+{
+    ui->mixedGCodeComboBox->addItem(newLocation);
+    int index = ui->mixedGCodeComboBox->findText(newLocation);
+    ui->mixedGCodeComboBox->setCurrentIndex(index);
 }
 
 void MainWindow::openFile(QString fileName)
@@ -158,20 +175,20 @@ void MainWindow::on_mixButton_clicked()
     {
         // Successfully mixed
         QMessageBox::information(this, tr("Mixed Successfully"), tr("The output has been mixed"));
+        // Change current working file to avoid save to the input file
+        updateCurrentFileName(mixedGCodeFileName);
     }
     else
     {
         QMessageBox::information(this, tr("Mixing failed"), tr("Mixing failed"));
-    }
-    // Change current working file to avoid save to the input file
-    updateCurrentFileName(mixedGCodeFileName);
+    }   
 }
 
 void MainWindow::on_origGCodeLocation_clicked()
 {
     origGCodeFileName = QFileDialog::getOpenFileName(this, tr("Original GCode Location"), QString(),
                                                      tr("GCode (*.gcode);;All files (*.*)"));
-
+    updateOrigBox(origGCodeFileName);
     openFile(origGCodeFileName);
 }
 
@@ -179,6 +196,7 @@ void MainWindow::on_mixedGCodeLocation_clicked()
 {
     mixedGCodeFileName = QFileDialog::getOpenFileName(this, tr("Mixed GCode Location"), QString(),
                                                       tr("GCode (*.gcode);;All files (*.*)"));
+    updateMixedBox(mixedGCodeFileName);
 }
 
 void MainWindow::on_startingRatio1_valueChanged(int arg1)
@@ -211,11 +229,15 @@ void MainWindow::on_endingRatio3_valueChanged(int arg1)
     ending_ratios[2] = arg1;
 }
 
-void MainWindow::calibrateRatios()
+qint8 MainWindow::calibrateRatios()
 {
     qint32 totalOutput;
 
     totalOutput = starting_ratios[0] + starting_ratios[1] + starting_ratios[2];
+    if (totalOutput == 0) {
+        QMessageBox::warning(this, tr("Warning"), tr("starting ratios are all zero"));
+        return 1;
+    }
     if (totalOutput != 100) {
         starting_ratios[0] = (int)(starting_ratios[0] * 100 / totalOutput);
         starting_ratios[1] = (int)(starting_ratios[1] * 100 / totalOutput);
@@ -226,6 +248,10 @@ void MainWindow::calibrateRatios()
     }
 
     totalOutput = ending_ratios[0] + ending_ratios[1] + ending_ratios[2];
+    if (totalOutput == 0) {
+        QMessageBox::warning(this, tr("Warning"), tr("ending ratios are all zero"));
+        return 2;
+    }
     if (totalOutput != 100) {
         ending_ratios[0] = (int)(ending_ratios[0] * 100 / totalOutput);
         ending_ratios[1] = (int)(ending_ratios[1] * 100 / totalOutput);
@@ -242,6 +268,8 @@ void MainWindow::calibrateRatios()
     ui->endingRatio1->setValue(ending_ratios[0]);
     ui->endingRatio2->setValue(ending_ratios[1]);
     ui->endingRatio3->setValue(ending_ratios[2]);
+
+    return 0;
 }
 
 // Gradually change the mixing ratio from start ratios to end ratios
@@ -265,7 +293,7 @@ qint8 MainWindow::changeRatio()
     QTextStream newGCode(&output);
 
     // defensive programming
-    calibrateRatios();
+    if (calibrateRatios() != 0) return 1;
 
     // Initialize the current ratio variables
     current_ratios[0] = starting_ratios[0];
@@ -354,7 +382,14 @@ qint8 MainWindow::changeRatio()
     return 0;
 }
 
-void MainWindow::on_origGCodeComboBox_currentIndexChanged(int index)
+void MainWindow::on_origGCodeComboBox_activated(const QString &arg1)
 {
+    origGCodeFileName = arg1;
+    updateCurrentFileName(origGCodeFileName);
+    openFile(currentFileName);
+}
 
+void MainWindow::on_mixedGCodeComboBox_activated(const QString &arg1)
+{
+    mixedGCodeFileName=arg1;
 }

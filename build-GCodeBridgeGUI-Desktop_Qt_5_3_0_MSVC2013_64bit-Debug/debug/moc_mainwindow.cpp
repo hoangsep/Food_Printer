@@ -19,7 +19,7 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[21];
+    QByteArrayData data[20];
     char stringdata[438];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
@@ -47,9 +47,8 @@ QT_MOC_LITERAL(14, 257, 30),
 QT_MOC_LITERAL(15, 288, 28),
 QT_MOC_LITERAL(16, 317, 28),
 QT_MOC_LITERAL(17, 346, 28),
-QT_MOC_LITERAL(18, 375, 15),
-QT_MOC_LITERAL(19, 391, 40),
-QT_MOC_LITERAL(20, 432, 5)
+QT_MOC_LITERAL(18, 375, 30),
+QT_MOC_LITERAL(19, 406, 31)
     },
     "MainWindow\0openFile\0\0fileName\0"
     "on_saveButton_clicked\0on_discardButton_clicked\0"
@@ -63,9 +62,8 @@ QT_MOC_LITERAL(20, 432, 5)
     "on_endingRatio1_valueChanged\0"
     "on_endingRatio2_valueChanged\0"
     "on_endingRatio3_valueChanged\0"
-    "calibrateRatios\0"
-    "on_origGCodeComboBox_currentIndexChanged\0"
-    "index"
+    "on_origGCodeComboBox_activated\0"
+    "on_mixedGCodeComboBox_activated"
 };
 #undef QT_MOC_LITERAL
 
@@ -98,8 +96,8 @@ static const uint qt_meta_data_MainWindow[] = {
       15,    1,  121,    2, 0x08 /* Private */,
       16,    1,  124,    2, 0x08 /* Private */,
       17,    1,  127,    2, 0x08 /* Private */,
-      18,    0,  130,    2, 0x08 /* Private */,
-      19,    1,  131,    2, 0x08 /* Private */,
+      18,    1,  130,    2, 0x08 /* Private */,
+      19,    1,  133,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -117,8 +115,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Int,   12,
     QMetaType::Void, QMetaType::Int,   12,
     QMetaType::Void, QMetaType::Int,   12,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::QString,   12,
+    QMetaType::Void, QMetaType::QString,   12,
 
        0        // eod
 };
@@ -143,8 +141,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->on_endingRatio1_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 13: _t->on_endingRatio2_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 14: _t->on_endingRatio3_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 15: _t->calibrateRatios(); break;
-        case 16: _t->on_origGCodeComboBox_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 15: _t->on_origGCodeComboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 16: _t->on_mixedGCodeComboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     }

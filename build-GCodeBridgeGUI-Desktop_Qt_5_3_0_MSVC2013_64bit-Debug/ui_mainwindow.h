@@ -65,7 +65,7 @@ public:
     QPushButton *origGCodeLocation;
     QHBoxLayout *horizontalLayout_2;
     QLabel *mixedGCodeLabel;
-    QComboBox *mixedGCodeCcomboBox;
+    QComboBox *mixedGCodeComboBox;
     QPushButton *mixedGCodeLocation;
     QPushButton *mixButton;
     QMenuBar *menuBar;
@@ -143,16 +143,19 @@ public:
 
         endingRatio2 = new QSpinBox(scrollAreaWidgetContents);
         endingRatio2->setObjectName(QStringLiteral("endingRatio2"));
+        endingRatio2->setMaximum(100);
 
         gridLayout->addWidget(endingRatio2, 1, 3, 1, 1);
 
         startingRatio3 = new QSpinBox(scrollAreaWidgetContents);
         startingRatio3->setObjectName(QStringLiteral("startingRatio3"));
+        startingRatio3->setMaximum(100);
 
         gridLayout->addWidget(startingRatio3, 0, 5, 1, 1);
 
         endingRatio1 = new QSpinBox(scrollAreaWidgetContents);
         endingRatio1->setObjectName(QStringLiteral("endingRatio1"));
+        endingRatio1->setMaximum(100);
 
         gridLayout->addWidget(endingRatio1, 1, 1, 1, 1);
 
@@ -168,11 +171,13 @@ public:
 
         startingRatio1 = new QSpinBox(scrollAreaWidgetContents);
         startingRatio1->setObjectName(QStringLiteral("startingRatio1"));
+        startingRatio1->setMaximum(100);
 
         gridLayout->addWidget(startingRatio1, 0, 1, 1, 1);
 
         endingRatio3 = new QSpinBox(scrollAreaWidgetContents);
         endingRatio3->setObjectName(QStringLiteral("endingRatio3"));
+        endingRatio3->setMaximum(100);
 
         gridLayout->addWidget(endingRatio3, 1, 5, 1, 1);
 
@@ -183,6 +188,7 @@ public:
 
         startingRatio2 = new QSpinBox(scrollAreaWidgetContents);
         startingRatio2->setObjectName(QStringLiteral("startingRatio2"));
+        startingRatio2->setMaximum(100);
 
         gridLayout->addWidget(startingRatio2, 0, 3, 1, 1);
 
@@ -229,11 +235,11 @@ public:
 
         horizontalLayout_2->addWidget(mixedGCodeLabel);
 
-        mixedGCodeCcomboBox = new QComboBox(scrollAreaWidgetContents);
-        mixedGCodeCcomboBox->setObjectName(QStringLiteral("mixedGCodeCcomboBox"));
-        mixedGCodeCcomboBox->setMinimumSize(QSize(700, 0));
+        mixedGCodeComboBox = new QComboBox(scrollAreaWidgetContents);
+        mixedGCodeComboBox->setObjectName(QStringLiteral("mixedGCodeComboBox"));
+        mixedGCodeComboBox->setMinimumSize(QSize(700, 0));
 
-        horizontalLayout_2->addWidget(mixedGCodeCcomboBox);
+        horizontalLayout_2->addWidget(mixedGCodeComboBox);
 
         mixedGCodeLocation = new QPushButton(scrollAreaWidgetContents);
         mixedGCodeLocation->setObjectName(QStringLiteral("mixedGCodeLocation"));
